@@ -24,13 +24,10 @@ async function main(){
     await mongoose.connect('mongodb://127.0.0.1:27017/wonderLust');
 }
 
-
 app.listen(8080,(req,res) => {
     console.log('server is working at 8080');
 })
-app.get('/', (req, res) => {
-    res.send('Home Page');
-})
+
 
 
 //index route
@@ -56,6 +53,7 @@ app.post('/listings',async (req,res) => {
 app.get('/listings/:id/edit',async (req,res) => {
     let { id } = req.params;
     let data = await Listing.findById(id);
+    console.log("edditing route working");
     res.render('listing/update.ejs', {data});
 })
 //save edit
@@ -65,12 +63,16 @@ app.put('/listings/:id',async (req,res) => {
     console.log(data);
     await Listing.findByIdAndUpdate(id, data);
     console.log('updated');
-    res.redirect('/listings/'+ id);
+    res.redirect('/listings');
 })
+
 //show route
 app.get('/listings/:id',async (req,res) => {
     let { id } = req.params;
+    console.log(id);
     let listingData = await Listing.findById(id);
+    console.log(listingData)
+    // console.log("show route working");
     res.render('listing/show.ejs',{listingData});
 })
 
@@ -79,5 +81,6 @@ app.delete('/listings/:id',async (req,res) => {
     let { id } = req.params;
     let listingData = await Listing.findByIdAndDelete(id);
     console.log(listingData);
+    console.log("delete route working");
     res.redirect('/listings');
 })
