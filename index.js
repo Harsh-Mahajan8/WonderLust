@@ -5,12 +5,14 @@ const Listing = require('./models/listing.js')
 const path = require('path');
 const method = require('method-override');
 const ejsMate = require("ejs-mate");
-//setting view
-app.engine('ejs',ejsMate);
-app.set('view engine','views');
+//setting ejs
+app.set('view engine','ejs');
 app.set('views',path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(method('_method'));//override setup
+app.engine('ejs',ejsMate);
+//using static files
+app.use(express.static(path.join(__dirname,"public")))
 
 
 main().then((res) => {
@@ -30,17 +32,6 @@ app.get('/', (req, res) => {
     res.send('Home Page');
 })
 
-//sampleListing
-app.get('/sampleListing', (req,res) => {
-    let sample = new Listing({
-        title: 'Sample Title',
-        description: 'Sample Description',
-        price: 1000,
-        location: 'Sample Location',
-    })
-    sample.save().then((res) => {console.log('sample is saved',res)})
-    .catch((err) => {console.log('error in listing')});
-} )
 
 //index route
 app.get('/listings', async (req,res) => {
@@ -57,8 +48,7 @@ app.get('/listings/new', (req,res) => {
 app.post('/listings',async (req,res) => {
     let data = (req.body);
     let listing = new Listing(data);
-    await listing.save().then((res) => {console.log('data saved')})
-    .catch((err) => {console.log('error in savinhg data')});
+    await listing.save();
     res.redirect('/listings');
 })
 
