@@ -1,2 +1,3 @@
 # WonderLust
-Major Project
+Major Project: Air bnb type site
+Stack Used : MERN stack
