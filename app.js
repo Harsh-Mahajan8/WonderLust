@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const Listing = require('./models/listing');
+const ejsMate = require('ejs-mate');
+app.engine('ejs',ejsMate);
 
 app.listen(8080, (req,res) => {
     console.log("server is working");
