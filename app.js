@@ -16,6 +16,7 @@ app.use(express.urlencoded({extended:true}));
 //override
 const override = require('method-override');
 app.use(override('_method'));
+app.use(express.static(path.join(__dirname,"public")));
 
 main().then((res) => {console.log('server is working')})
 .catch((err) =>{console.log('error in connection server',err)});
@@ -23,6 +24,10 @@ async function main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/wonderLust");
 }
 
+//home route
+app.get('/', (req, res) => {
+    res.send('home route');
+})
 
 //index route
 app.get('/listings',async (req,res) => {

@@ -1,0 +1,15 @@
+.navbar{
+    line-height: 4.05rem;
+    background-color: white;
+}
+
+.fa-brands{
+    color :#fe424d;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.nav-link{
+    color: #222222 !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+}

@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listing</title>
-</head>
+<% layout('./layouts/boilerplate') -%>
+
 <body>
     <h2>Detail of Listing: </h2>
+    <button><a href="/listings/<%= listingData._id %>/edit">Edit</a></button>
     <button><a href="/listings">Back</a></button>
     <ul>
         <li>Title: <%= listingData.title %></li>
@@ -17,4 +13,3 @@
         <li>Country: <%= listingData.country %></li>
     </ul>
 </body>
-</html>
