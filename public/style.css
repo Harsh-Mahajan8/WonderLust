@@ -1,15 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
 .navbar{
     line-height: 4.05rem;
     background-color: white;
 }
 
-.fa-brands{
+.navbar-nav a {
+    font-size: 1.25rem;
+}
+
+.fa-airbnb{
     color :#fe424d;
     font-size: 2rem;
     font-weight: 700;
+    letter-spacing: .35rem;
+    margin-right: 2rem;
+}
+.add,.del{
+    background:#fe424d;
+    border: none !important;
+
 }
 .nav-link{
     color: #222222 !important;
     font-weight: 600;
     font-size: 1.1rem;
+}
+
+/* footer */
+footer{
+    display: flex;
+    border-top: 0.61px solid rgb(184, 184, 184);
+    line-height: 5rem;
+    margin:0px 40px;
+    color: #303030;
+    font-weight: 600;
+    justify-content: space-between;
+}
+.bottomFoot{
+    background-color: #e7e7e7;
+}
+
+.left{
+    display: flex;
+}
+.f-infi-links  a{
+    color: #303030;
+    text-decoration: none;
+    margin: 0px 8px;
+}
+.f-infi-links  a:hover{
+    text-decoration: underline;
+}
+
+.right .f-info-socials i{
+    margin: 3px;
+    font-size: 1.8rem;
+}
+.card{
+    border: none !important;
+    margin-bottom: 2.5rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100%;
+    object-fit: cover !important;
+    padding-bottom: 0.5rem;
+}
+.card-body{
+    padding: 0;
+    font-family: "Plus Jakarta Sans", serif;
+}
+a.indexCard{
+    text-decoration: none;
+    color: #222222 ;
+}
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    background-color: aliceblue;
+    opacity: 0.2;
+}
+/* show */
+.card-img-top{
+    height: 40vh;
 }

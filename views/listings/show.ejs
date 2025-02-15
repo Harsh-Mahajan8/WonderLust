@@ -1,15 +1,30 @@
 <% layout('./layouts/boilerplate') -%>
 
 <body>
-    <h2>Detail of Listing: </h2>
-    <button><a href="/listings/<%= listingData._id %>/edit">Edit</a></button>
-    <button><a href="/listings">Back</a></button>
-    <ul>
-        <li>Title: <%= listingData.title %></li>
-        <li>Description: <%= listingData.description %></li>
-        <li>Price: &#8377;<%= listingData.price.toLocaleString('en-IN') %></li>
-        <img src="<%= listingData.image %>" alt="">
-        <li>Location: <%= listingData.location %></li>
-        <li>Country: <%= listingData.country %></li>
-    </ul>
+    <div class="row pt-1">
+        <div class="card col-8 offset-2 fs-5">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3">
+                <form action="/listings" method="get">
+                    <button class="btn btn-secondary mb-4 pe-4 ps-4"><i class="fa-solid fa-arrow-left"></i></button>
+                </form>
+            </div>
+            <img src="<%= listingData.image %>" class="card-img-top show-img .img-fluid show-img" alt="listingImg">
+            <div class="card-body col-8 pt-2">
+                <p class="card-text">
+                    <b><%= listingData.title %></b><br>
+                    <%= listingData.description %> <br>
+                    <b>Location: </b><%= listingData.location %> <br>
+                    <b>Country:</b> <%= listingData.country %> <br>
+                    <b>
+                        &#8377;<%= listingData.price.toLocaleString('en-IN') %>
+                    </b>/night
+                </p>
+            </div> 
+            <div class="d-flex justify-content-between pt-4">
+                <form action="/listings/<%= listingData._id %>/edit" method="get">
+                    <button class="btn btn-primary mb-4 pe-3 ps-3">Edit</button>
+                </form>
+            </div>              
+        </div>
+    </div>
 </body>

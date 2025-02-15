@@ -1,14 +1,44 @@
 <% layout('./layouts/boilerplate') -%>
 
 <body>
-    <h2>Add new Listing:</h2>
-    <form action="/listings" method="post">
-        <input type="text" name="title" placeholder="Add a Title"><br><br>
-        <textarea name="description" id="description" placeholder="description"></textarea><br><br>
-        <input type="text" name="image" placeholder="Add a image url"><br><br>
-        <input type="number" name="price" placeholder="Add a price"><br><br>
-        <input type="text" name="location" placeholder="Add a location"><br><br>
-        <input type="text" name="country" placeholder="Add a country"><br><br>
-        <button>Add</button>
-    </form>
+    <div class="row ">
+        <div class="col-8 offset-2">
+
+
+    <h2>Create New Listing:</h2>
+
+        <form action="/listings" method="post">  
+            <div class="mt-4 mb-4">
+                <label for="title" class="form-label fs-5">Title</label>
+                <input class="form-control" type="text" name="title" placeholder="Add a Title">                
+            </div>
+            <div class="desciption mb-4">
+                <label for="description" class="form-label fs-5">Description</label>
+                <textarea name="description" class="form-control" id="description" placeholder="description"></textarea>                
+            </div>
+            <div class="image mb-4">
+                <label for="image" class="form-label fs-5">Image URL</label>
+                <input class="form-control" type="text" name="image" placeholder="Add a image url">
+            </div>
+            <div class="row">
+                <div class="price mb-4 col-md-4">
+                    <label for="price" class="form-label fs-5">Price</label>
+                    <input class="form-control" type="number" name="price" placeholder="Add a price">
+                </div>
+                <div class="country mb-4 col-md-8">
+                    <label for="country" class="form-label fs-5">Country</label>
+                    <input class="form-control" type="text" name="country" placeholder="Add a country">                
+                </div>                
+            </div>
+
+            <div class="location mb-4">
+                <label for="location" class="form-label fs-5">Location</label>
+                <input class="form-control" type="text" name="location" placeholder="Add a location">
+            </div>
+
+            <button class="add btn btn-dark mb-4">Add</button>
+        </form>
+
+    </div>
+</div>
 </body>

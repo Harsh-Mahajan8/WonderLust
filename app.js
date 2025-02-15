@@ -4,25 +4,27 @@ const mongoose = require('mongoose');
 const path = require('path');
 const Listing = require('./models/listing');
 const ejsMate = require('ejs-mate');
-app.engine('ejs',ejsMate);
 
-app.listen(8080, (req,res) => {
-    console.log("server is working");
-})
 //setting ejs
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
+app.engine('ejs',ejsMate);
+
 //override
 const override = require('method-override');
 app.use(override('_method'));
-app.use(express.static(path.join(__dirname,"public")));
 
-main().then((res) => {console.log('server is working')})
-.catch((err) =>{console.log('error in connection server',err)});
 async function main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/wonderLust");
 }
+app.use(express.static(path.join(__dirname,"/public")));
+main().then((res) => {console.log('server is working')})
+.catch((err) =>{console.log('error in connection server',err)});
+
+app.listen(8080, (req,res) => {
+    console.log("server is working");
+})
 
 //home route
 app.get('/', (req, res) => {
@@ -66,6 +68,7 @@ app.put('/listings/:id',async (req,res) => {
     let data = await Listing.findByIdAndUpdate(id,updatedData,{new:true});
     res.redirect(`/listings/${id}`);
 })
+
 //delete route
 app.delete('/listings/:id',async (req,res) => {
     let { id } = req.params;
@@ -76,7 +79,20 @@ app.delete('/listings/:id',async (req,res) => {
 //show route
 app.get("/listings/:id",async (req,res) => {
     let { id } = req.params;
-    let listingData = await Listing.findById(id);
-    console.log('show route working');
-    res.render('listings/show.ejs',{listingData});
-})
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        console.log('Invalid ObjectId');
+        return res.status(400).send('Invalid ID');
+      }
+      try {
+        let listingData = await Listing.findById(id);
+        if (!listingData) {
+          return res.status(404).send('Listing not found');
+        }
+        console.log('show route working');
+        res.render('listings/show.ejs', { listingData });
+      } catch (err) {
+        console.log('Error in show route', err);
+        res.status(500).send('Server Error');
+      }
+    });
+
