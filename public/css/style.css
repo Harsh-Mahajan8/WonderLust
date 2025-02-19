@@ -39,6 +39,12 @@ footer{
 }
 .bottomFoot{
     background-color: #e7e7e7;
+    max-height: 10vh;
+}
+@media(max-width: 400px) {
+    .bottomFoot {
+        max-height: 10vh;
+    }
 }
 
 .left{
