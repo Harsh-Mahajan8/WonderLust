@@ -30,7 +30,7 @@ app.listen(8080, (req,res) => {
     console.log("server is working");
 })
 //validateListing
-const validateListing = (req, res, next) => {
+const validateListing = ( req, res, next) => {
     let {error} = listingSchema.validate(req.body);
     if(error){
         throw new expressError(400, error)
@@ -44,8 +44,9 @@ app.get('/', (req, res) => {
 })
 
 //index route
-app.get('/listings',validateListing,
+app.get('/listings',
     wrapAsync(async (req,res) => {
+    console.log("listing route");
     let allListing =await Listing.find({});
     console.log('index route working');
     res.render('listings/index.ejs',{allListing});
@@ -58,7 +59,8 @@ app.get('/listings/new', (req,res) => {
     res.render('listings/new.ejs');
 })
 //post route
-app.post('/listings',validateListing,wrapAsync(async (req,res, next) => {
+
+app.post('/listings',wrapAsync(async (req,res, next) => {
         let newListing = new Listing(req.body);
         await newListing.save();
         console.log('post route working');
@@ -66,10 +68,7 @@ app.post('/listings',validateListing,wrapAsync(async (req,res, next) => {
 
 }))
 //update btn
-app.get('/listings/:id/edit',validateListing,wrapAsync(async (req,res) => {
-    if(!req.body.listing){
-        throw new expressError(400,"Send a valid listing");
-    };
+app.get('/listings/:id/edit',wrapAsync(async (req,res) => {
     let { id } = req.params;
     console.log(id);
     let data = await Listing.findById(id);
@@ -94,7 +93,7 @@ app.delete('/listings/:id',wrapAsync(async (req,res) => {
 }));
 
 //show route
-app.get("/listings/:id",validateListing,wrapAsync(async (req,res) => {
+app.get("/listings/:id",wrapAsync(async (req,res) => {
     let { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
         console.log('Invalid ObjectId');
