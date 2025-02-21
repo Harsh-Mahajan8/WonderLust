@@ -2,14 +2,16 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+//requireng models
 const Listing = require('./models/listing');
+const Review = require('./models/review');
 const ejsMate = require('ejs-mate');
 //errorHangling Imports
 const wrapAsync = require('./util/wrapAsync.js');
 const expressError = require("./util/expressError.js");
 const joi = require('joi'); 
 const {listingSchema} = require('./schema.js');
-//setting ejs
+//setting ejs and parsing data
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
@@ -29,6 +31,7 @@ main().then((res) => {console.log('server is working')})
 app.listen(8080, (req,res) => {
     console.log("server is working");
 })
+
 //validateListing
 const validateListing = ( req, res, next) => {
     let {error} = listingSchema.validate(req.body);
@@ -58,15 +61,15 @@ app.get('/listings/new', (req,res) => {
     console.log('add btn working');
     res.render('listings/new.ejs');
 })
-//post route
 
-app.post('/listings',wrapAsync(async (req,res, next) => {
+//post route
+app.post('/listings', validateListing, wrapAsync(async (req,res, next) => {
         let newListing = new Listing(req.body);
         await newListing.save();
         console.log('post route working');
         res.redirect('/listings');
-
 }))
+
 //update btn
 app.get('/listings/:id/edit',wrapAsync(async (req,res) => {
     let { id } = req.params;
@@ -75,6 +78,7 @@ app.get('/listings/:id/edit',wrapAsync(async (req,res) => {
     console.log('update btn working');
     res.render('listings/edit.ejs',{data});
 }));
+
 //save Update
 app.put('/listings/:id',validateListing,wrapAsync(async (req,res) => {
     let { id } = req.params;
@@ -91,23 +95,40 @@ app.delete('/listings/:id',wrapAsync(async (req,res) => {
     await Listing.findByIdAndDelete(id).then((res)=>{console.log('Listing Deleted')}).catch((err) => {console.log('err in deleting route')});
     res.redirect('/listings');
 }));
-
+ //review Route ->post request
+    app.post('/listings/:id/review', async (req, res) => {
+        let {id} = req.params;
+        let listing = await Listing.findById(id);
+        let review = new Review(req.body.review);
+        listing.reviews.push(review);
+        await listing.save();
+        await review.save();
+        console.log('review saved');
+        res.redirect(`/listings/${id}`);
+    })
 //show route
 app.get("/listings/:id",wrapAsync(async (req,res) => {
     let { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
         console.log('Invalid ObjectId');
         return res.status(400).send('Invalid ID');
-      }
-        let listingData = await Listing.findById(id);
-        console.log('show route working');
-        res.render('listings/show.ejs', { listingData });
-      }
-    ));
+    }
+    let listingData = await Listing.findById(id);
+    if (!listingData) {
+        console.log('Listing not found');
+        return res.status(404).send('Listing not found');
+    }
+    console.log('show route working');
+    res.render('listings/show.ejs', { listingData });
+}));
+
+    
+
 
     app.all('*', (req, res, next) => {
         throw new expressError(404,"Page not found!!");
     })
+   
 
     //error middleware
     app.use((err,req, res, next) => {
