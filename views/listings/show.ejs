@@ -8,10 +8,10 @@
                     <button class="btn btn-secondary mb-4 pe-4 ps-4"><i class="fa-solid fa-arrow-left"></i></button>
                 </form>
             </div>
+            <h2><%= listingData.title %></h2>
             <img src="<%= listingData.image %>" class="card-img-top show-img .img-fluid show-img" alt="listingImg">
             <div class="card-body col-8 pt-2">
                 <p class="card-text">
-                    <b><%= listingData.title %></b><br>
                     <%= listingData.description %> <br>
                     <b>Location: </b><%= listingData.location %> <br>
                     <b>Country:</b> <%= listingData.country %> <br>
