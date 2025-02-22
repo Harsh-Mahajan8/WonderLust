@@ -8,3 +8,11 @@ module.exports.listingSchema = joi.object({
         country: joi.string().required(),
         image: joi.string().allow("", null),
 });
+
+module.exports.reviewSchema = joi.object({
+        review : joi.object({
+                name: joi.string().required(),
+                comment: joi.string().required(),
+                rating: joi.string().required().min(1).max(5),
+        }).required()
+});
