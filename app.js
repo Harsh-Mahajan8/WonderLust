@@ -3,6 +3,24 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const ejsMate = require('ejs-mate');
+const session = require('express-session');
+const flash = require('connect-flash');
+
+//session
+const sessionOpt = {
+    secret : "thisisasecret",
+    resave : false,
+    saveUninitialized : true,
+    cookie : {
+        httpOnly : true,
+        expires : Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge : 1000 * 60 * 60 * 24 * 7
+    }
+};
+//using session
+app.use(session(sessionOpt));  
+app.use(flash());//flash    
+ 
 //errorHangling Imports
 const expressError = require("./util/expressError.js");
 //routes
@@ -32,6 +50,12 @@ app.listen(8080, (req,res) => {
 //home route
 app.get('/', (req, res) => {
     res.send('home route');
+})
+
+app.use((req,res,next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
 })
 
 app.use("/listings",listing);

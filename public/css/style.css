@@ -82,12 +82,12 @@ a.indexCard{
     text-decoration: none;
     color: #222222 ;
 }
-.card-img-overlay{
-    opacity: 0;
+.card-img-top{
+    opacity: 1;
 }
-.card-img-overlay:hover{
+.card-img-top:hover{
     background-color: aliceblue;
-    opacity: 0.2;
+    opacity: 0.8;
 }
 /* show */
 .card-img-top{
