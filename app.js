@@ -5,6 +5,9 @@ const path = require('path');
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user.js');
 
 //session
 const sessionOpt = {
@@ -21,11 +24,20 @@ const sessionOpt = {
 app.use(session(sessionOpt));  
 app.use(flash());//flash    
  
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 //errorHangling Imports
 const expressError = require("./util/expressError.js");
 //routes
-const listing = require('./routes/listings.js');
-const review = require('./routes/review.js');
+const listingRoute = require('./routes/listings.js');
+const reviewRoute = require('./routes/review.js');
+const userRoute = require('./routes/user.js');
+
 //setting ejs and parsing data
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,"views"));
@@ -46,6 +58,15 @@ main().then((res) => {console.log('db is connectied')})
 app.listen(8080, (req,res) => {
     console.log("server is working at 8080");
 })
+//demo
+app.get('/demo',async (req,res) => {
+    let demoUser = new User({
+        email : "demoUser@gmail.com",
+        username : "demoUser"
+    });
+    let result = await User.register(demoUser,'demoPassword');
+    res.send(result);
+})
 
 //home route
 app.get('/', (req, res) => {
@@ -58,8 +79,9 @@ app.use((req,res,next) => {
     next();
 })
 
-app.use("/listings",listing);
-app.use("/listings/:id/review",review);
+app.use("/listings",listingRoute);
+app.use("/listings/:id/review",reviewRoute);
+app.use("/",userRoute);
 
  app.all('*', (req, res, next) => {
     throw new expressError(404,"Page not found!!");
