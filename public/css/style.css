@@ -46,7 +46,11 @@ footer{
         max-height: 10vh;
     }
 }
-
+.user{
+    background-color: rgb(209, 209, 209);
+    border-radius: 3.5rem;
+    line-height: 3.5rem;
+}
 
 .left{
     display: flex;

@@ -1,3 +1,5 @@
+<% const isLogged = typeof currentUser !== 'undefined'; %>
+
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
@@ -13,6 +15,27 @@
           <a class="nav-link" href="/listings">All Listings</a>
           <a class="nav-link" href="/listings/new">Add New Listing</a>
         </div>
+        <li class="nav-item dropdown me-5 ms-auto" style="list-style-type: none;">
+          <a class="nav-link dropdown-toggle fs-5 ps-4 pe-4 user" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+
+            <% if(!isLogged){ %> 
+              <i class="fa-regular fa-user"></i>
+           <% }else{ %>
+              <%= currentUser.username[0].toUpperCase() %>
+           <% } %>
+            
+          </a>
+          <ul class="dropdown-menu ">
+            <% if(!currentUser){ %> 
+              <li><a class="dropdown-item pt-0" href="/signup">Sign up</a></li>
+              <li><a class="dropdown-item pt-0" href="/login">Log in</a></li>
+            <% }else{%> 
+            <li><a class="dropdown-item" ><i class="fa-regular fa-user me-2 "></i><%= currentUser.username %> </a></li> 
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item pt-0" href="/logout"><i class="fa-solid fa-right-from-bracket pe-2"></i>Log out</a></li>
+            <% } %>
+          </ul>
+        </li>
       </div>
     </div>
   </nav>
