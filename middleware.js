@@ -6,7 +6,6 @@ const {listingSchema,reviewSchema} = require('./schema.js');
 module.exports.isLoggedIn = (req,res,next) => {
     if(!req.isAuthenticated()){
         req.session.path = req.originalUrl;
-        console.log("hi",req.session.path);
         req.flash('error','You must log in first to create a Listing');
         return res.redirect('/login');
     }
@@ -15,7 +14,6 @@ module.exports.isLoggedIn = (req,res,next) => {
 module.exports.saveUrl =(req,res,next) =>{
     if(req.originalUrl){
         res.locals.pathUrl = req.session.path;
-        console.log("hi1",res.locals.pathUrl);
     }
     next();
 }
