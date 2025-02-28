@@ -26,7 +26,7 @@
                     </b>/night
                 </p>
             </div> 
-
+            <% if(currentUser && listingData.owner._id.equals(currentUser._id)) {%>
             <div class="d-flex pt-4">
                 <form action="/listings/<%= listingData._id %>/edit" method="get">
                     <button class="btn btn-primary pe-3 ps-3">Edit</button>
@@ -35,14 +35,13 @@
                     <button class="btn btn-danger mb-4 ps-3 pe-3 ms-3"><i class="fa-solid fa-trash"></i></button>
                 </form>
             </div>
-
-        <hr>
+            <% } %>
+            <hr>
         <div class="col-10 offset-1 fs-5 mb-2">
-            <h4>Leave a Review</h4>
+           <% if(currentUser){ %>
+            <h4>Leave a Review :</h4>
             <form action='/listings/<%= listingData._id  %>/review' method="post" novalidate class="needs-validation">
                 <div class="name col-6 mb-3 mt-3">
-                    <label for="name" id="name" class="form-label fs-5 ">User Name</label>
-                    <input name="review[name]" id="name" class="form-control"required>
                     <div class="invalid-feedback">
                         Please enter some Valid Name for review
                     </div>
@@ -60,11 +59,13 @@
                 </div>
                 <button class="btn btn-outline-dark">Submit</button>
             </form>
+            <hr>
+            <% } %>
         </div>
-        <hr>
-        <div class="displayReview">
+      
+        <div class="displayReview offset-1">
             <h4 class="mb-3 mt-2">Reviews:</h4>
-            <div class="row">
+            <div class="row ">
                 <% for(review of listingData.reviews) {%>
                     <div class="card col-5 pb-2 ps-1 ms-3 me-1 mb-2">
                         <div class="card-body p-1">
