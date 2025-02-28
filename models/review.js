@@ -8,7 +8,7 @@ const reviewSchema = new Schema({
     rating: {
         type: Number,
         max: 5,
-        min: 1
+        min: 0
     },
     createdAt: {
         type: Date,
