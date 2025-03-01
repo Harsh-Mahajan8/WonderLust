@@ -12,8 +12,11 @@ module.exports.newListing = (req,res) => {
     res.render('listings/new.ejs');
 }
 module.exports.saveListing = async (req,res, next) => {
-    console.log(req.body);
+    let url = req.file.path;
+    let filename = req.file.filename;
+    console.log(url,"...",filename);
     let newListing = new Listing(req.body);
+    newListing.image = { url, filename};
     newListing.owner = req.user._id;
     await newListing.save();
     req.flash('success','New Listing Added');
