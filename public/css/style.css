@@ -47,9 +47,12 @@ footer{
     }
 }
 .user{
-    background-color: rgb(209, 209, 209);
+    border: 1px solid #7e7e7e;
     border-radius: 3.5rem;
     line-height: 3.5rem;
+}
+.user:hover{
+    box-shadow: 2px 3px 10px 0px #b4b4b4;   
 }
 
 .left{

@@ -1,21 +1,27 @@
 <% layout('./layouts/boilerplate') -%>
-<body>
-    <h2 class="ps-4 m-2">All Listings</h2>
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xm-1 ps-5 pe-5 pt-2">
-        <% for(let listing of allListing) {%>
-            <div class="listing-card col-3">
-                <a href="/listings/<%= listing._id %>"class="indexCard">
-                    <img src="<%= listing.image.url %>"alt ="<%= listing.image.filename %>" class="card-img-top" alt="..." style="height: 20rem;">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= listing.title %></h5>
-                        <p class="card-text"><%= listing.location %>, <%= listing.country %></p>
 
-                        <p class="card-text"><%= listing.description %></p>
-                        <p class="card-text"><b>&#8377;<%= listing.price.toLocaleString('en-IN') %>/night</b></p>
-                    </div> 
-                </a> 
-            </div>
-        <% } %>
-        
-    </div>
-</body>
+    <body>
+        <h2 class="ps-4 m-2">All Listings</h2>
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xm-1 ps-5 pe-5 pt-2">
+            <% for(let listing of allListing) {%>
+                <div class="listing-card col-3">
+                    <a href="/listings/<%= listing._id %>" class="indexCard">
+                        <img src="<%= listing.image.url %>" alt="<%= listing.image.filename %>" class="card-img-top"
+                            alt="..." style="height: 20rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= listing.title %>
+                            </h5>
+                            <p class="card-text">
+                                <%= listing.location %>, <%= listing.country %>
+                            </p>
+                            <p class="card-text">
+                                <%= listing.description %>
+                            </p>
+                            <p class="card-text"><b>&#8377;<%= listing.price.toLocaleString('en-IN') %>/night</b></p>
+                        </div>
+                    </a>
+                </div>
+                <% } %>
+        </div>
+    </body>

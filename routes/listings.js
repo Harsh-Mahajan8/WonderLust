@@ -6,10 +6,14 @@ const listingController = require('../controller/listing.js');
 const multer = require('multer');
 const {storage} = require('../cloudConfig');
 const upload  = multer({storage});
+    
 router
     .route('/')
     .get(wrapAsync(listingController.index))//index route
-    .post(isLoggedIn,upload.single("image"), validateListing,  wrapAsync(listingController.saveListing));//post route
+    .post(isLoggedIn,
+        upload.single("image"),
+        validateListing,
+        wrapAsync(listingController.saveListing));//post route
 
 //add button
 router.get('/new', isLoggedIn, listingController.newListing);
@@ -17,9 +21,10 @@ router.get('/new', isLoggedIn, listingController.newListing);
 router
     .route('/:id')
     .get( wrapAsync(listingController.showListing))//show route
-    .put( validateListing, wrapAsync(listingController.saveUpdate))//save Update
+    .put(isLoggedIn, upload.single("image"), validateListing, wrapAsync(listingController.saveUpdate))//save Update
     .delete( isLoggedIn, isOwner, wrapAsync(listingController.deleteListing));//delete route
 
-    //update btn
+//update btn
 router.get('/:id/edit', isLoggedIn, isOwner, wrapAsync(listingController.updateListing));
+
 module.exports = router;
