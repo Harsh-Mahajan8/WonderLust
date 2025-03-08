@@ -5,7 +5,6 @@ async function getCoordinates(location, country) {
       const data = await opencage.geocode({
         q: `${location}, ${country}`,
         key: '827122d45a01487393d15893559c7665' // Replace with your actual OpenCage API key
-       
       });
       
       if (data.results.length > 0) {
@@ -86,6 +85,8 @@ module.exports.showListing = async (req, res) => {
     let id = req.params.id;
     console.log(id);
     let listingData = await Listing.findById(id).populate('reviews').populate('owner');
+    let {lat, lng} = await getCoordinates(listingData.location, listingData.country);
+    listingData.coordinates = [lat, lng];
     // console.log(listingData);
     if (!listingData) {
         req.flash('error', 'Cannot find that listing');

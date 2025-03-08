@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
-.navbar{
-    line-height: 4.05rem;
+.navtop{
+    line-height: 4.05rem!important;
     background-color: white;
 }
 
@@ -26,7 +26,64 @@
     font-weight: 600;
     font-size: 1.1rem;
 }
+/* filters */
+.filters {
+    font-size: 1.1rem;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    /* margin: 2rem 0rem 1rem !important; */
+    justify-content: center; 
+    padding: 1.5rem 2rem;
 
+}
+
+.filter {
+    margin-right: 2rem;
+    opacity: 0.8;
+   
+}
+
+.filter a {
+    text-decoration: none;
+    color: black;
+}
+
+.filter:hover {
+    opacity: 1;
+    transform: scale(1.045);
+    cursor: pointer;
+}
+.tax-switch:hover {
+    opacity: 1;
+    transform: scale(1.045);
+    cursor: pointer;
+}
+
+.taxinfo{
+    display: none;
+}
+
+.tax-switch {
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(max-width:450px) {
+    .mainbox {
+        flex-direction: column;
+    }
+
+    .listing-card {
+        width: 100%;
+    }
+}
+.navbar{
+    line-height: normal;
+}   
 /* footer */
 footer{
     display: flex;

@@ -1,105 +1,97 @@
 <% layout('./layouts/boilerplate') -%>
-<style>
-    .filters{
-        font-size: 1.1rem;
-        text-align: center;
-        display: flex;
-        flex-wrap: wrap;
-        margin: 2rem 0rem 1rem !important;
-        justify-content: center;
-    }
-    .filter{
-        margin-right: 2rem;
-        opacity: 0.8;
-    }
-    .filter a{
-        text-decoration: none;
-        color: black;
-    }
-    .filter:hover{
-        opacity: 1;
-        transform: scale(1.045);
-        cursor: pointer;
-    }
-            @media(max-width:450px){
-                .mainbox{
-                    flex-direction: column;
-                }
-                .listing-card{
-                    width: 100%;
-                }
-            }
-   
-</style>
+
     <body>
-        <div class="filters ">
-            <div class="filter ">
-                <a href="/filters/trending">
-                <div class="icon">
-                    <i class="fa-solid fa-fire"></i>
-                </div>
-                <p>Trending</p></a>
-            </div>
+        <nav class="navbar filters navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="filter ">
+                        <a href="/filters/trending">
+                            <div class="icon">
+                                <i class="fa-solid fa-fire"></i>
+                            </div>
+                            <p>Trending</p>
+                        </a>
+                    </div>
 
-            <div class="filter">
-                <a href="/filters/room">
-                <div class="icon">
-                    <i class="fa-solid fa-bed"></i>
+                    <div class="filter">
+                        <a href="/filters/room">
+                            <div class="icon">
+                                <i class="fa-solid fa-bed"></i>
+                            </div>
+                            <p>Rooms</p>
+                        </a>
+                    </div>
+                    <div class="filter">
+                        <a href="/filters/iconic-city">
+                            <div class="icon">
+                                <i class="fa-solid fa-mountain-city"></i>
+                            </div>
+                            <p>Iconic Cities</p>
+                        </a>
+                    </div>
+                    <div class="filter">
+                        <a href="/filters/mountain">
+                            <div class="icon">
+                                <i class="fa-solid fa-mountain"></i>
+                            </div>
+                            <p>Mountains</p>
+                        </a>
+                    </div>
+                    <div class="filter">
+                        <a href="/filters/castle">
+                            <div class="icon">
+                                <i class="fa-brands fa-fort-awesome"></i>
+                            </div>
+                            <p>Castles</p>
+                        </a>
+                    </div>
+                    <div class="filter">
+                        <a href="/filters/amaxing-pool">
+                            <div class="icon">
+                                <i class="fa-solid fa-person-swimming"></i>
+                            </div>
+                            <p>Amazing Pools</p>
+                        </a>
+                    </div>
+                    <div class="filter">
+                        <a href="/filters/camping">
+                            <div class="icon">
+                                <i class="fa-solid fa-tents"></i>
+                            </div>
+                            <p>Camping</p>
+                        </a>
+                    </div>
+                    <div class="filter">
+                        <a href="/filters/farm">
+                            <div class="icon">
+                                <i class="fa-solid fa-cow"></i>
+                            </div>
+                            <p>Farms</p>
+                        </a>
+                    </div>
+                    <div class="filter">
+                        <a href="/filters/artic">
+                            <div class="icon">
+                                <i class="fa-solid fa-snowman"></i>
+                            </div>
+                            <p>Artic</p>
+                        </a>
+                    </div>
+                    <div class="tax-switch ps-3 pe-5 ms-auto mb-2 col-1.6">
+                        <div class="form-check form-switch form-check-reverse pt-3 pb-3">
+                            <input class="form-check-input fs-4 " type="checkbox" role="switch"
+                                id="flexSwitchCheckDefault">
+                            <label class="form-check-label mt-1" for="flexSwitchCheckDefault">Display Tax</label>
+                        </div>
+                    </div>
                 </div>
-                <p>Rooms</p></a>
             </div>
-            <div class="filter">
-                <a href="/filters/iconic-city">
-                <div class="icon">
-                    <i class="fa-solid fa-mountain-city"></i>
-                </div>
-                <p>Iconic Cities</p></a>
-            </div>
-            <div class="filter">
-                <a href="/filters/mountain">
-                <div class="icon">
-                    <i class="fa-solid fa-mountain"></i>
-                </div>
-                <p>Mountains</p></a>
-            </div>
-            <div class="filter">
-                <a href="/filters/castle">
-                <div class="icon">
-                    <i class="fa-brands fa-fort-awesome"></i>
-                </div>
-                <p>Castles</p></a>
-            </div>
-            <div class="filter">
-                <a href="/filters/amaxing-pool">
-                <div class="icon">
-                    <i class="fa-solid fa-person-swimming"></i>
-                </div>
-                <p>Amazing Pools</p></a>
-            </div>
-            <div class="filter">
-                <a href="/filters/camping">
-                <div class="icon">
-                    <i class="fa-solid fa-tents"></i>
-                </div>
-                <p>Camping</p></a>
-            </div>
-            <div class="filter">
-                <a href="/filters/farm">
-                <div class="icon">
-                    <i class="fa-solid fa-cow"></i>
-                </div>
-                <p>Farms</p></a>
-            </div>
-            <div class="filter">
-                <a href="/filters/artic">
-                <div class="icon">
-                    <i class="fa-solid fa-snowman"></i>
-                </div>
-                <p>Artic</p></a>
-            </div>
+        </nav>
 
-        </div>
-        
         <div class="row mainbox row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 ps-5 pe-5 ">
 
             <% for(let listing of allListing) {%>
@@ -117,10 +109,23 @@
                             <p class="card-text">
                                 <%= listing.description %>
                             </p>
-                            <p class="card-text"><b>&#8377;<%= listing.price.toLocaleString('en-IN') %>/night</b></p>
+                            <p class="card-text">
+                                <b>&#8377;<%= listing.price.toLocaleString('en-IN') %>/night
+                                <span class="taxinfo">+ 18% GST</span></b>
+                            </p>
                         </div>
                     </a>
                 </div>
                 <% } %>
         </div>
     </body>
+    <script>
+        let taxSwitch = document.querySelector('#flexSwitchCheckDefault');
+        let taxInfo = document.querySelectorAll('.taxinfo');
+        taxSwitch.addEventListener('click', () => {
+            for(info of taxInfo){
+                info.style.display = taxSwitch.checked ? 'inline' : 'none';
+            }
+        })
+
+    </script>

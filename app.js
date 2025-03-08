@@ -92,7 +92,12 @@ app.get('/filters/:cat',async (req, res) => {
     console.log(filterListings);
     res.render('listings/filter.ejs',{filterListings});
 })
-
+//search
+app.get('/search',async (req,res) => {
+    let {query} = req.query;
+    let filterListings = await Listing.find({'Country':query});
+    res.render('listings/filter.ejs',{filterListings});
+})
 
  app.all('*', (req, res, next) => {
     throw new expressError(404,"Page not found!!");

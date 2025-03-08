@@ -1,6 +1,44 @@
 <% const isLogged = typeof currentUser !== 'undefined'; %>
+<style>
+  .searchbox{
+    height: 60px;
+    align-items: center;
+    border: 1px solid #fe424d;
+    padding: 1rem 0rem 1rem 1rem;
+    border-radius: 2.83rem;
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  }
+  .searchbox .input{
+    border-radius: 3rem;
+    line-height: 2.5rem;
+    font-size: 1.22rem;
+    border: none;
+  }
+  .searchbox .input:focus{
+    box-shadow:  none;
+
+  }
+  .searchbox .search {
+    line-height: 3.5rem;
+    padding: 0rem 2.7rem;
+    border-radius: 2.83rem;
+    border: 1px solid #fe424d;
+    background-color:#fe424d;
+    color: #fff;
+  }
+  .right{
+    flex-wrap: nowrap;
+  }
+  @media(max-width:1000px){
+    .searchbox .input{
+      display: none;
+    }
+    .searchbox{
+      border: none;
+    }  
+  }
+</style>
+<nav class="navbar navtop navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/listings">
         <i class="fa-brands fa-airbnb"></i>
@@ -10,14 +48,22 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav mt-1">
+        <!-- <div class="navbar-nav mt-1">
           <a class="nav-link" href="/listings">Explore</a>
-        </div>
-        <div class="right ms-auto d-flex justify-content-between">
-          <a class="nav-link me-5" href="/listings/new">Add New Listing</a>
+        </div> -->
+
+        <form class="d-flex searchbox ms-auto fs-5" role="search" action="/search" method="get">
+          <input class="form-control me-2 input" type="search" placeholder="Destination Country" aria-label="Search">
+          <button class="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+
+
+        <div class="right ms-auto d-flex text-center">
+          <a class="nav-link me-3" href="/listings/new">Add new Listing</a>
+          
           <li class="nav-item dropdown me-5" style="list-style-type: none;">
             <a class="nav-link dropdown-toggle fs-5 ps-4 pe-4 user" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-  
+              
               <% if(!isLogged){ %> 
                 <i class="fa-regular fa-user"></i>
              <% }else{ %>
