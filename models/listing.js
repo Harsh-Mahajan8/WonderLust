@@ -23,6 +23,10 @@ const listingSchema = new mongoose.Schema({
     coordinates:{
             type :[Number],
             required : true,               
+    },
+    category: {
+        type: String,
+        enum: ['trending','room','iconic-city','mountain','castle','amazing-pool','camping','farm','artic'],
     }
 });
 

@@ -20,11 +20,27 @@
                             Please enter a short Description!
                         </div>
                     </div>
-                    <div class="image mb-4">
-                        <label for="image" class="form-label fs-5">Listing Image</label>
-                        <input class="form-control" type="file" name="image" placeholder="Add a Listing image " required>
-
+                    <div class="row">
+                        <div class="category mb-4 col-6 cols-sm-1">
+                            <label for="image" class="form-label fs-5">Listing Image</label>
+                            <input class="form-control" type="file" name="image" placeholder="Add a Listing image " required>
+                        </div>
+                        <div class="category col-6">
+                            <label for="category" class="form-label fs-5">Listing Category</label>
+                            <select name="category" class="form-select">
+                                <option value="trending">Trending</option>
+                                <option value="room">Room</option>
+                                <option value="iconic-city">Iconic City</option>
+                                <option value="mountain">Mountain</option>
+                                <option value="castle">Castle</option>
+                                <option value="farm">Farm</option>
+                                <option value="artic">Artic</option>
+                                <option value="amazing-pool">Amazing Pool</option>
+                                <option value="camping">Camping</option>
+                            </select>
+                        </div>
                     </div>
+
                     <div class="row">
                         <div class="price mb-4 col-md-4">
                             <label for="price" class="form-label fs-5">Price</label>

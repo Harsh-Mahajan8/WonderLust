@@ -1,8 +1,107 @@
 <% layout('./layouts/boilerplate') -%>
-
+<style>
+    .filters{
+        font-size: 1.1rem;
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 2rem 0rem 1rem !important;
+        justify-content: center;
+    }
+    .filter{
+        margin-right: 2rem;
+        opacity: 0.8;
+    }
+    .filter a{
+        text-decoration: none;
+        color: black;
+    }
+    .filter:hover{
+        opacity: 1;
+        transform: scale(1.045);
+        cursor: pointer;
+    }
+            @media(max-width:450px){
+                .mainbox{
+                    flex-direction: column;
+                }
+                .listing-card{
+                    width: 100%;
+                }
+            }
+   
+</style>
     <body>
-        <h2 class="ps-4 m-2">All Listings</h2>
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xm-1 ps-5 pe-5 pt-2">
+        <div class="filters ">
+            <div class="filter ">
+                <a href="/filters/trending">
+                <div class="icon">
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+                <p>Trending</p></a>
+            </div>
+
+            <div class="filter">
+                <a href="/filters/room">
+                <div class="icon">
+                    <i class="fa-solid fa-bed"></i>
+                </div>
+                <p>Rooms</p></a>
+            </div>
+            <div class="filter">
+                <a href="/filters/iconic-city">
+                <div class="icon">
+                    <i class="fa-solid fa-mountain-city"></i>
+                </div>
+                <p>Iconic Cities</p></a>
+            </div>
+            <div class="filter">
+                <a href="/filters/mountain">
+                <div class="icon">
+                    <i class="fa-solid fa-mountain"></i>
+                </div>
+                <p>Mountains</p></a>
+            </div>
+            <div class="filter">
+                <a href="/filters/castle">
+                <div class="icon">
+                    <i class="fa-brands fa-fort-awesome"></i>
+                </div>
+                <p>Castles</p></a>
+            </div>
+            <div class="filter">
+                <a href="/filters/amaxing-pool">
+                <div class="icon">
+                    <i class="fa-solid fa-person-swimming"></i>
+                </div>
+                <p>Amazing Pools</p></a>
+            </div>
+            <div class="filter">
+                <a href="/filters/camping">
+                <div class="icon">
+                    <i class="fa-solid fa-tents"></i>
+                </div>
+                <p>Camping</p></a>
+            </div>
+            <div class="filter">
+                <a href="/filters/farm">
+                <div class="icon">
+                    <i class="fa-solid fa-cow"></i>
+                </div>
+                <p>Farms</p></a>
+            </div>
+            <div class="filter">
+                <a href="/filters/artic">
+                <div class="icon">
+                    <i class="fa-solid fa-snowman"></i>
+                </div>
+                <p>Artic</p></a>
+            </div>
+
+        </div>
+        
+        <div class="row mainbox row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 ps-5 pe-5 ">
+
             <% for(let listing of allListing) {%>
                 <div class="listing-card col-3">
                     <a href="/listings/<%= listing._id %>" class="indexCard">

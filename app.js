@@ -12,6 +12,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
+const Listing = require("./models/listing")
 
 //session
 const sessionOpt = {
@@ -72,11 +73,6 @@ app.get('/demo',async (req,res) => {
     res.send(result);
 })
 
-//home route
-app.get('/', (req, res) => {
-    res.send('home route');
-})
-
 app.use((req,res,next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -87,6 +83,16 @@ app.use((req,res,next) => {
 app.use("/listings",listingRoute);
 app.use("/listings/:id/review",reviewRoute);
 app.use("/",userRoute);
+
+//filters
+app.get('/filters/:cat',async (req, res) => {
+    let {cat} =  req.params;
+    console.log(cat)
+    let filterListings = await Listing.find({'category': cat});
+    console.log(filterListings);
+    res.render('listings/filter.ejs',{filterListings});
+})
+
 
  app.all('*', (req, res, next) => {
     throw new expressError(404,"Page not found!!");

@@ -26,5 +26,7 @@ router
 
 //update btn
 router.get('/:id/edit', isLoggedIn, isOwner, wrapAsync(listingController.updateListing));
+//filter
+
 
 module.exports = router;

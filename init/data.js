@@ -10,7 +10,7 @@ const sampleListings = [
     price: 1500,
     location: "Malibu",
     country: "United States",
-  },
+    category:'castle'},
   {
     title: "Modern Loft in Downtown",
     description:
@@ -22,7 +22,7 @@ const sampleListings = [
     price: 1200,
     location: "New York City",
     country: "United States",
-  },
+    category:'castle'},
   {
     title: "Mountain Retreat",
     description:
@@ -34,7 +34,7 @@ const sampleListings = [
     price: 1000,
     location: "Aspen",
     country: "United States",
-  },
+    category:'castle'},
   {
     title: "Historic Villa in Tuscany",
     description:
@@ -46,7 +46,7 @@ const sampleListings = [
     price: 2500,
     location: "Florence",
     country: "Italy",
-  },
+    category:'farm'},
   {
     title: "Secluded Treehouse Getaway",
     description:
@@ -58,7 +58,7 @@ const sampleListings = [
     price: 800,
     location: "Portland",
     country: "United States",
-  },
+    category:'farm'},
   {
     title: "Beachfront Paradise",
     description:
@@ -70,7 +70,7 @@ const sampleListings = [
     price: 2000,
     location: "Cancun",
     country: "Mexico",
-  },
+    category:'trending'},
   {
     title: "Rustic Cabin by the Lake",
     description:
@@ -82,7 +82,7 @@ const sampleListings = [
     price: 900,
     location: "Lake Tahoe",
     country: "United States",
-  },
+    category:'trending'},
   {
     title: "Luxury Penthouse with City Views",
     description:
@@ -94,7 +94,7 @@ const sampleListings = [
     price: 3500,
     location: "Los Angeles",
     country: "United States",
-  },
+    category:'trending'},
   {
     title: "Ski-In/Ski-Out Chalet",
     description:
@@ -106,7 +106,7 @@ const sampleListings = [
     price: 3000,
     location: "Verbier",
     country: "Switzerland",
-  },
+    category:'trending'},
   {
     title: "Safari Lodge in the Serengeti",
     description:
@@ -118,7 +118,7 @@ const sampleListings = [
     price: 4000,
     location: "Serengeti National Park",
     country: "Tanzania",
-  },
+    category:'trending'},
   {
     title: "Historic Canal House",
     description:
@@ -130,7 +130,7 @@ const sampleListings = [
     price: 1800,
     location: "Amsterdam",
     country: "Netherlands",
-  },
+    category:'trending'},
   {
     title: "Private Island Retreat",
     description:
@@ -142,7 +142,7 @@ const sampleListings = [
     price: 10000,
     location: "Fiji",
     country: "Fiji",
-  },
+    category:'trending'},
   {
     title: "Charming Cottage in the Cotswolds",
     description:
@@ -154,7 +154,7 @@ const sampleListings = [
     price: 1200,
     location: "Cotswolds",
     country: "United Kingdom",
-  },
+    category:'trending'},
   {
     title: "Historic Brownstone in Boston",
     description:
@@ -166,7 +166,7 @@ const sampleListings = [
     price: 2200,
     location: "Boston",
     country: "United States",
-  },
+    category:'trending'},
   {
     title: "Beachfront Bungalow in Bali",
     description:
@@ -178,7 +178,7 @@ const sampleListings = [
     price: 1800,
     location: "Bali",
     country: "Indonesia",
-  },
+    category:'trending'},
   {
     title: "Mountain View Cabin in Banff",
     description:
@@ -190,7 +190,7 @@ const sampleListings = [
     price: 1500,
     location: "Banff",
     country: "Canada",
-  },
+    category:'trending'},
   {
     title: "Art Deco Apartment in Miami",
     description:
@@ -202,7 +202,7 @@ const sampleListings = [
     price: 1600,
     location: "Miami",
     country: "United States",
-  },
+    category:'trending'},
   {
     title: "Tropical Villa in Phuket",
     description:
@@ -214,7 +214,7 @@ const sampleListings = [
     price: 3000,
     location: "Phuket",
     country: "Thailand",
-  },
+    category:'room'},
   {
     title: "Historic Castle in Scotland",
     description:
@@ -226,7 +226,7 @@ const sampleListings = [
     price: 4000,
     location: "Scottish Highlands",
     country: "United Kingdom",
-  },
+    category:'room'},
   {
     title: "Desert Oasis in Dubai",
     description:
@@ -238,7 +238,7 @@ const sampleListings = [
     price: 5000,
     location: "Dubai",
     country: "United Arab Emirates",
-  },
+    category:'room'},
   {
     title: "Rustic Log Cabin in Montana",
     description:
@@ -250,7 +250,7 @@ const sampleListings = [
     price: 1100,
     location: "Montana",
     country: "United States",
-  },
+    category:'room'},
   {
     title: "Beachfront Villa in Greece",
     description:
@@ -262,7 +262,7 @@ const sampleListings = [
     price: 2500,
     location: "Mykonos",
     country: "Greece",
-  },
+    category:'room'},
   {
     title: "Eco-Friendly Treehouse Retreat",
     description:
@@ -274,7 +274,7 @@ const sampleListings = [
     price: 750,
     location: "Costa Rica",
     country: "Costa Rica",
-  },
+    category:'iconic-city'},
   {
     title: "Historic Cottage in Charleston",
     description:
@@ -286,7 +286,7 @@ const sampleListings = [
     price: 1600,
     location: "Charleston",
     country: "United States",
-  },
+    category:'iconic-city'},
   {
     title: "Modern Apartment in Tokyo",
     description:
@@ -298,7 +298,7 @@ const sampleListings = [
     price: 2000,
     location: "Tokyo",
     country: "Japan",
-  },
+    category:'iconic-city'},
   {
     title: "Lakefront Cabin in New Hampshire",
     description:
@@ -310,7 +310,7 @@ const sampleListings = [
     price: 1200,
     location: "New Hampshire",
     country: "United States",
-  },
+    category:'iconic-city'},
   {
     title: "Luxury Villa in the Maldives",
     description:
@@ -322,7 +322,7 @@ const sampleListings = [
     price: 6000,
     location: "Maldives",
     country: "Maldives",
-  },
+    category:'iconic-city'},
   {
     title: "Ski Chalet in Aspen",
     description:
@@ -334,7 +334,7 @@ const sampleListings = [
     price: 4000,
     location: "Aspen",
     country: "United States",
-  },
+    category:'artic'},
   {
     title: "Secluded Beach House in Costa Rica",
     description:
@@ -346,7 +346,7 @@ const sampleListings = [
     price: 1800,
     location: "Costa Rica",
     country: "Costa Rica",
-  },
+    category:'trending'},
 ];
 
 module.exports = { data: sampleListings };

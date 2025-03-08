@@ -21,8 +21,6 @@ async function getCoordinates(location, country) {
     }
   };
 
-
-
 //index route
 module.exports.index = async (req, res) => {
     console.log("listing route");
