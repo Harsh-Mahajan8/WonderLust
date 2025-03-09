@@ -24,13 +24,13 @@ async function main() {
 app.use(express.static(path.join(__dirname, "/public")));
 main().then((res) => { console.log('db is connectied') })
     .catch((err) => { console.log('error in connection server', err) });
-
+const secretKey = process.env.SECRET;
 //session
 //saving cookees online -Atlas
 const store = MongoStore.create({
     mongoUrl : mongoAtlas,
     crypto:{
-        secret:'thisisasecret',
+        secret:secretKey,
     },
     touchAfter: 24*3600,
 })
@@ -41,7 +41,7 @@ store.on('error', () => {
 
 const sessionOpt = {
     store,
-    secret: "thisisasecret",
+    secret: secretKey,
     resave: false,
     saveUninitialized: true,
     cookie: {
